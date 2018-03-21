@@ -34,3 +34,6 @@ Create table in priv/repo/migration/20...._create_invoices.exs<br>
 <br>
 Create table in priv/repo/migration/20...._create_items.exs<br>
 `mix ecto.migrate`<br>
+<br>
+Create table in priv/repo/migration/20...._create_invoice_items.exs<br>
+`mix ecto.migrate`<br>
