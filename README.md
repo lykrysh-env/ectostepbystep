@@ -19,4 +19,8 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/ectostepbystep](https://hexdocs.pm/ectostepbystep).
 
-mix new ectostepbystep --sup // set up supervisor tree
+`mix new ectostepbystep --sup` // set up supervisor tree<br>
+Add ecto and postgrex in mix.exs<br>
+`mix deps.get` // install dependencies<br>
+
+
