@@ -22,5 +22,7 @@ be found at [https://hexdocs.pm/ectostepbystep](https://hexdocs.pm/ectostepbyste
 `mix new ectostepbystep --sup` // set up supervisor tree<br>
 Add ecto and postgrex in mix.exs<br>
 `mix deps.get` // install dependencies<br>
+Configure database in config/config.exs<br>
+`mix ecto.gen.repo`<br>
 
 

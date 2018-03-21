@@ -2,6 +2,15 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
+config :ectostepbystep, Ectostepbystep.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  database: "ectostepbystep_repo",
+  username: "user",
+  password: "pass",
+  hostname: "localhost"
+
+config :ectostepbystep, ecto_repos: [Ectostepbystep.Repo]
+
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
 # file won't be loaded nor affect the parent project. For this reason,
