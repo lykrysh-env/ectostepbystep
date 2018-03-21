@@ -24,5 +24,8 @@ Add ecto and postgrex in mix.exs<br>
 `mix deps.get` // install dependencies<br>
 Configure database in config/config.exs<br>
 `mix ecto.gen.repo`<br>
+Add supervisor to the children list in lib/ectostepbystep.ex<br>
+Set username and pw in config/config.exs<br>
+`mix ecto.create`<br>
 
 

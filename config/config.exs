@@ -5,8 +5,8 @@ use Mix.Config
 config :ectostepbystep, Ectostepbystep.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "ectostepbystep_repo",
-  username: "user",
-  password: "pass",
+  username: "postgres",
+  password: "postgres",
   hostname: "localhost"
 
 config :ectostepbystep, ecto_repos: [Ectostepbystep.Repo]
