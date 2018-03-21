@@ -31,5 +31,6 @@ Set username and pw in config/config.exs<br>
 `mix ecto.gen.migration create_invoices`<br>
 Create table in priv/repo/migration/20...._create_invoices.exs<br>
 `mix ecto.migrate`<br>
-
-
+<br>
+Create table in priv/repo/migration/20...._create_items.exs<br>
+`mix ecto.migrate`<br>
