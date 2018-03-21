@@ -1,6 +1,7 @@
 # This file is responsible for configuring your application
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
+config :ectostepbystep, ecto_repos: [Ectostepbystep.Repo]
 
 config :ectostepbystep, Ectostepbystep.Repo,
   adapter: Ecto.Adapters.Postgres,
@@ -8,8 +9,6 @@ config :ectostepbystep, Ectostepbystep.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost"
-
-config :ectostepbystep, ecto_repos: [Ectostepbystep.Repo]
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
