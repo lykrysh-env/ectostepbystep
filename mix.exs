@@ -15,7 +15,7 @@ defmodule Ectostepbystep.MixProject do
   def application do
     [
       extra_applications: [:logger, :ecto, :postgrex],
-      mod: {Ectostepbystep.Application, []}
+      mod: {Ectostepbystep, []}
     ]
   end
 
