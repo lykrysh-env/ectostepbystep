@@ -1,8 +1,9 @@
 defmodule Ectostepbystep.Item do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
 
-  alias Ectostepbystep.InvoiceItem
+  alias Ectostepbystep.{InvoiceItem, Item, Repo}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   schema "items" do
@@ -22,4 +23,14 @@ defmodule Ectostepbystep.Item do
     |> validate_number(:price, greater_than_or_equal_to: Decimal.new(0))
   end
 
+  def items_by_quantity, do: Repo.all items_by(:quantity)
+  def items_by_subtotal, do: Repo.all items_by(:subtotal)
+
+  defp items_by(type) do
+    from i in Item,
+      join: ii in InvoiceItem, on: ii.item_id == i.id,
+      select: %{id: i.id, name: i.name, total: sum(field(ii, ^type))},
+      group_by: i.id,
+      order_by: [desc: sum(field(ii, ^type))]
+  end
 end

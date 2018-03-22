@@ -1,8 +1,9 @@
 defmodule Ectostepbystep.Invoice do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
 
-  alias Ectostepbystep.{Invoice, InvoiceItem, Repo}
+  alias Ectostepbystep.{Invoice, InvoiceItem, Item, Repo}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   schema "invoices" do
@@ -36,8 +37,24 @@ defmodule Ectostepbystep.Invoice do
   end
 
   defp get_items(params) do
-    items = params[:invoice_items] || params["invoice_items"]
+    #items = params[:invoice_items] || params["invoice_items"]
+    items = items_with_prices(params[:invoice_items] || params["invoice_items"])
     Enum.map(items, fn(item) -> InvoiceItem.changeset(%InvoiceItem{}, item) end)
+  end
+
+  defp items_with_prices(items) do
+    item_ids = Enum.map(items, fn(item) -> item[:item_id] || item["item_id"]  end)
+    q = from(i in Item, select: %{id: i.id, price: i.price}, where: i.id in ^item_ids)
+    prices = Repo.all(q)
+
+    Enum.map(items, fn(item) -> 
+      item_id = item[:item_id] || item["item_id"]
+      %{
+        item_id: item_id,
+        quantity: item[:quantity] || item["quantity"],
+        price: Enum.find(prices, fn(p) -> p[:id] == item_id end)[:price] || 0
+      }
+    end)
   end
 
   defp validate_item_count(cs, params) do
@@ -48,5 +65,6 @@ defmodule Ectostepbystep.Invoice do
       cs
     end
   end
+
 end
 
